@@ -1,33 +1,39 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [knowledge, setKnowledge] = useState(0)
+  const [studyHabits, setStudyHabits] = useState(0)
+  const [studyPowerUpgrades, setStudyPowerUpgrades] = useState(0)
+  var studyPowerUpgradeAvailable = true;
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
       </div>
-      <h1>Vite + React</h1>
+      {/* logo glass moves everything down but adds drop shadow */}
+      {/* <h1 className="logo">Welcome to the real world.</h1> */}
+      <h1>Welcome to the real world.</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={() => setKnowledge((knowledge) => knowledge + 1 + studyPowerUpgrades)}>
+          {/* Knowledge is {knowledge} */}
+          Study
         </button>
+        {studyPowerUpgradeAvailable &&
+          <>
+            {/* DO THIS WITH CSS */}
+            <br />
+            <br />
+            {/* DO THIS WITH CSS */}
+            <button onClick={() => setStudyPowerUpgrades((studyPowerUpgrades) => studyPowerUpgrades + 1)}>
+              Study Power Upgrade
+            </button>
+          </>
+        }
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          You know {knowledge === 0 ? "nothing" : knowledge + " things" }.
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
