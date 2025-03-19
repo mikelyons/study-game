@@ -11,10 +11,10 @@ function App() {
   return (
     <>
       <div>
+        <h1>Welcome to the real world.</h1>
       </div>
       {/* logo glass moves everything down but adds drop shadow */}
       {/* <h1 className="logo">Welcome to the real world.</h1> */}
-      <h1>Welcome to the real world.</h1>
       <div className="card">
         <p>Knowledge: {knowledge}</p>
         <p>Study Habits: {studyHabits}</p>
