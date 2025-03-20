@@ -34,7 +34,10 @@ function App() {
             {/* <button onClick={() => setStudyPowerUpgrades((studyPowerUpgrades) => studyPowerUpgrades + 1)}>
               Study Habits
             </button> */}
-            <button onClick={() => setStudyHabits((studyHabits) => studyHabits + 1)}>
+            <button onClick={() => {
+              setStudyHabits((studyHabits) => studyHabits + 1);
+              setStudyPowerUpgrades((studyPowerUpgrades) => studyPowerUpgrades + 1);
+            }}>
               Study Habits
             </button>
           </>
