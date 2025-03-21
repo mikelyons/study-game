@@ -1,5 +1,8 @@
-# React + TypeScript + Vite
+# Welcome to the Real World
 
+## A React + TypeScript + Vite incremental game by @MikeLyons
+
+<!-- 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -48,3 +51,4 @@ export default tseslint.config({
   },
 })
 ```
+-->

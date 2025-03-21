@@ -18,6 +18,14 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.title {
+  will-change: filter;
+  transition: filter 300ms;
+}
+.title:hover {
+  filter: drop-shadow(0 0 1em #10ef00aa);
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -34,6 +42,7 @@
 }
 
 .card {
+  /* border: 1px solid #f00; */
   padding: 2em;
 }
 
