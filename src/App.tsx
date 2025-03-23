@@ -9,6 +9,7 @@ function App() {
   const [knowledge, setKnowledge] = useState(0)
   const [studyHabits, setStudyHabits] = useState(0)
   const [studyPowerUpgrades, setStudyPowerUpgrades] = useState(0)
+  const [energy, setEnergy] = useState(0)
 
   const handleRankChange = () => {
     setRank((rank) => rank + 1);
@@ -33,6 +34,7 @@ function App() {
         <p>You are a {RANKS[rank] || "infinity"}.</p>
         <p>Knowledge: {knowledge}</p>
         <p>Study Habits: {studyHabits}</p>
+        <p>Energy: {energy}</p>
         {/* <p>Study Power Upgrades: {studyPowerUpgrades}</p> */}
       </div>
 
