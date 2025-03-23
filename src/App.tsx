@@ -43,6 +43,9 @@ function App() {
           {/* Knowledge is {knowledge} */}
           Study
         </button>
+        &nbsp;
+        <button onClick={() => setEnergy((energy) => energy + 1)}>Sleep</button>
+
         {studyPowerUpgradeAvailable &&
           <>
             <br />
