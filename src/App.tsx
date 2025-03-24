@@ -15,6 +15,12 @@ function App() {
     setRank((rank) => rank + 1);
   }
 
+  // TODO: Implement energy and knowledge expenditures
+  const handleCurrencyExpenditures = () => {
+    setEnergy((energy) => energy - 1);
+  }
+
+
   useEffect(() => {
     if (knowledge > RANK_THRESHOLDS[rank] + 10) {
       handleRankChange();
