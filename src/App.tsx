@@ -1,6 +1,23 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+/*
+  The upgrades should be a state object, and this is where the expenditures should be called
+  the call will be the update on an interval, and handle all currencies and upgrades
+  TODO:
+  - Implement button availability matrix
+  - Implement energy and knowledge expenditures
+  - Implement currency expenditures
+  - Implement study power upgrades
+  - Implement study habits upgrades
+  - Implement rank changes
+  - Implement knowledge and study habits display
+  - Implement study power upgrade display
+  - Implement study habits upgrade display
+  - Implement rank change display
+  - Implement knowledge and study habits change display
+*/
+
 const RANKS = ["child", "student", "graduate", "doctor", "professor", "expert", "genius", "master", "legend", "god", "universe", "Source"]
 const RANK_THRESHOLDS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 1000];
 
@@ -11,8 +28,16 @@ function App() {
   const [studyPowerUpgrades, setStudyPowerUpgrades] = useState(0)
   const [energy, setEnergy] = useState(0)
 
+  // TODO: Implement button availability matrix
+  var studyAvailable = rank > 0 && rank < 5;
+  var studyHabitsAvailable = rank > 1 && rank < 3;
+  var studyPowerUpgradeAvailable = true;
+
   const handleRankChange = () => {
     setRank((rank) => rank + 1);
+    // studyAvailable = rank > 0 && rank < 5;
+    // studyHabitsAvailable = rank > 1 && rank < 3;
+    // studyPowerUpgradeAvailable = true;
   }
 
   // TODO: Implement energy and knowledge expenditures
@@ -20,15 +45,14 @@ function App() {
     setEnergy((energy) => energy - 1);
   }
 
-
   useEffect(() => {
+    if (energy > 10 && rank < 1) {
+      handleRankChange();
+    }
     if (knowledge > RANK_THRESHOLDS[rank] + 10) {
       handleRankChange();
     }
-  }, [knowledge])
-
-  var studyHabitsAvailable = rank > 0 && rank < 3;
-  var studyPowerUpgradeAvailable = true;
+  }, [knowledge, rank, energy])
 
   return (
     <>
@@ -45,11 +69,16 @@ function App() {
       </div>
 
       <div className="card">
-        <button onClick={() => setKnowledge((knowledge) => knowledge + 1 + studyPowerUpgrades)}>
-          {/* Knowledge is {knowledge} */}
-          Study
-        </button>
-        &nbsp;
+        {studyAvailable ? 
+          <>
+            <button onClick={() => setKnowledge((knowledge) => knowledge + 1 + studyPowerUpgrades)}>
+              {/* Knowledge is {knowledge} */}
+              Study
+            </button>
+            &nbsp;
+          </>
+        : <p>To sleep, perchance to dream...</p>}
+
         <button onClick={() => setEnergy((energy) => energy + 1)}>Sleep</button>
 
         {studyPowerUpgradeAvailable &&
