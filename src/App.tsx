@@ -41,9 +41,9 @@ function App() {
   }
 
   // TODO: Implement energy and knowledge expenditures
-  const handleCurrencyExpenditures = () => {
-    setEnergy((energy) => energy - 1);
-  }
+  // const handleCurrencyExpenditures = () => {
+  //   setEnergy((energy) => energy - 1);
+  // }
 
   useEffect(() => {
     if (energy > 10 && rank < 1) {
