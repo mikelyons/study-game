@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './LoadingScreen.css'; // Import CSS for styling
 
 const LoadingScreen = () => {
