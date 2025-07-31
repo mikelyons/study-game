@@ -6,6 +6,7 @@ import RankUpNotification from './components/RankUpNotification';
 import ParticleEffect from './components/ParticleEffect';
 import EventLog from './components/EventLog';
 import Tooltip from './components/Tooltip';
+import MenuBar from './components/MenuBar';
 
 function App() {
   const [particlePosition, setParticlePosition] = useState<{ x: number; y: number } | null>(null);
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <>
+      <MenuBar version="e649b4c" />
       <Timer onTick={handleTick} />
       <RankUpNotification rank={rank} rankName={RANKS[rank]} />
       {particlePosition && <ParticleEffect x={particlePosition.x} y={particlePosition.y} />}

@@ -1,0 +1,22 @@
+.menu-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.menu-items a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.menu-items a:hover {
+  text-decoration: underline;
+}
+
+.version {
+  font-size: 14px;
+} 
