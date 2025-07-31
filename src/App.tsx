@@ -24,6 +24,7 @@ function App() {
     setStudyHabits,
     setStudyPowerUpgrades,
     handleTick,
+    handleStudyHabitsUpgrade,
     RANKS,
   } = useGameLogic();
 
@@ -78,8 +79,7 @@ function App() {
             </button> */}
             <Tooltip text="Increases study power by 1.">
               <button onClick={(e) => {
-                setStudyHabits((studyHabits) => studyHabits + 1);
-                setStudyPowerUpgrades((studyPowerUpgrades) => studyPowerUpgrades + 1);
+                handleStudyHabitsUpgrade();
                 handleButtonClick(e);
               }}>
                 Study Habits
