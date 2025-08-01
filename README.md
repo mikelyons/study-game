@@ -19,10 +19,10 @@ The game revolves around balancing your **energy** and **knowledge**.
 
 ## Planned Features
 
-- Implement a timer for passive resource generation.
-- Add visual effects for ranking up and clicking.
-- Create a running log of game events.
-- Add tooltips to UI elements for better guidance.
+- ~Implement a timer for passive resource generation.~
+- ~Add visual effects for ranking up and clicking.~
+- ~Create a running log of game events.~
+- ~Add tooltips to UI elements for better guidance.~
 - Balance the energy consumption and regeneration mechanics.
 - Deploy the game using GitHub Pages.
 
