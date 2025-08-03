@@ -34,14 +34,7 @@ function App() {
   //   setEnergy((energy) => energy - 1);
   // }
 
-  useEffect(() => {
-    if (energy > 10 && rank < 1) {
-      handleRankChange();
-    }
-    if (knowledge > RANK_THRESHOLDS[rank] + 10) {
-      handleRankChange();
-    }
-  }, [knowledge, rank, energy])
+
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setParticlePosition({ x: e.clientX, y: e.clientY });
