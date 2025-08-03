@@ -2,6 +2,46 @@
 
 This is an idle clicker game built with React and Vite. The goal is to manage resources, upgrade your skills, and progress through the ranks of knowledge.
 
+🎮 **[Play the Game Here!](https://mikelyons.github.io/study-game)** 🎮
+
+### About
+
+This is an incremental study game built with React, TypeScript, and Vite. Study hard and you too can be successful!
+
+### Development
+
+To run the project locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/mikelyons/study-game.git
+cd study-game
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+### Deployment
+
+This project is automatically deployed to GitHub Pages using GitHub Actions. Every push to the `main` branch triggers a new deployment.
+
+To deploy manually:
+```bash
+npm run deploy
+```
+
+For detailed deployment setup instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+### Technologies Used
+
+- **React 19** - UI library
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Fast build tool and dev server
+- **GitHub Pages** - Hosting platform
+
 ## How to Play
 
 - **Sleep:** Increase your energy.
