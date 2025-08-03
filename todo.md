@@ -7,3 +7,5 @@
 [ ] add a running log of events
 [ ] add tooltips to the different buttons and the ability to move tooltip to the side
 [ ] energy spend and gain, plus balancing
+[ ] never give up
+[ ] always try your best

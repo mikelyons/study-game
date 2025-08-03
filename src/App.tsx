@@ -1,44 +1,33 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react';
 import './App.css'
-
-/*
-  The upgrades should be a state object, and this is where the expenditures should be called
-  the call will be the update on an interval, and handle all currencies and upgrades
-  TODO:
-  - Implement button availability matrix
-  - Implement energy and knowledge expenditures
-  - Implement currency expenditures
-  - Implement study power upgrades
-  - Implement study habits upgrades
-  - Implement rank changes
-  - Implement knowledge and study habits display
-  - Implement study power upgrade display
-  - Implement study habits upgrade display
-  - Implement rank change display
-  - Implement knowledge and study habits change display
-*/
-
-const RANKS = ["child", "student", "graduate", "doctor", "professor", "expert", "genius", "master", "legend", "god", "universe", "Source"]
-const RANK_THRESHOLDS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 1000];
+import { useGameLogic } from './hooks/useGameLogic';
+import Timer from './components/Timer';
+import RankUpNotification from './components/RankUpNotification';
+import ParticleEffect from './components/ParticleEffect';
+import EventLog from './components/EventLog';
+import Tooltip from './components/Tooltip';
+import MenuBar from './components/MenuBar';
+import Sun from './components/Sun';
 
 function App() {
-  const [rank, setRank] = useState(0)
-  const [knowledge, setKnowledge] = useState(0)
-  const [studyHabits, setStudyHabits] = useState(0)
-  const [studyPowerUpgrades, setStudyPowerUpgrades] = useState(0)
-  const [energy, setEnergy] = useState(0)
+  const [particlePosition, setParticlePosition] = useState<{ x: number; y: number } | null>(null);
 
-  // TODO: Implement button availability matrix
-  var studyAvailable = rank > 0 && rank < 5;
-  var studyHabitsAvailable = rank > 1 && rank < 3;
-  var studyPowerUpgradeAvailable = true;
+  const {
+    rank,
+    knowledge,
+    studyHabits,
+    energy,
+    events,
+    studyAvailable,
+    studyHabitsAvailable,
+    studyPowerUpgradeAvailable,
+    handleStudy,
+    handleSleep,
+    handleTick,
+    handleStudyHabitsUpgrade,
+    RANKS,
+  } = useGameLogic();
 
-  const handleRankChange = () => {
-    setRank((rank) => rank + 1);
-    // studyAvailable = rank > 0 && rank < 5;
-    // studyHabitsAvailable = rank > 1 && rank < 3;
-    // studyPowerUpgradeAvailable = true;
-  }
 
   // TODO: Implement energy and knowledge expenditures
   // const handleCurrencyExpenditures = () => {
@@ -54,8 +43,22 @@ function App() {
     }
   }, [knowledge, rank, energy])
 
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setParticlePosition({ x: e.clientX, y: e.clientY });
+    setTimeout(() => {
+      setParticlePosition(null);
+    }, 1000);
+  };
+
+
   return (
     <>
+      <MenuBar version="e649b4c" />
+      <Sun />
+      <Timer onTick={handleTick} />
+      <RankUpNotification rank={rank} rankName={RANKS[rank]} />
+      {particlePosition && <ParticleEffect x={particlePosition.x} y={particlePosition.y} />}
+      <EventLog events={events} />
       <div>
         <h1 className="title">Welcome to the Real World.</h1>
       </div>
@@ -71,15 +74,19 @@ function App() {
       <div className="card">
         {studyAvailable ? 
           <>
-            <button onClick={() => setKnowledge((knowledge) => knowledge + 1 + studyPowerUpgrades)}>
-              {/* Knowledge is {knowledge} */}
-              Study
-            </button>
+            <Tooltip text="Converts 1 energy into 1 knowledge.">
+              <button onClick={(e) => { handleStudy(); handleButtonClick(e); }}>
+                {/* Knowledge is {knowledge} */}
+                Study
+              </button>
+            </Tooltip>
             &nbsp;
           </>
         : <p>To sleep, perchance to dream...</p>}
 
-        <button onClick={() => setEnergy((energy) => energy + 1)}>Sleep</button>
+        <Tooltip text="Converts all energy into knowledge.">
+          <button onClick={(e) => { handleSleep(); handleButtonClick(e); }}>Sleep</button>
+        </Tooltip>
 
         {studyPowerUpgradeAvailable &&
           <>
@@ -88,12 +95,14 @@ function App() {
             {/* <button onClick={() => setStudyPowerUpgrades((studyPowerUpgrades) => studyPowerUpgrades + 1)}>
               Study Habits
             </button> */}
-            <button onClick={() => {
-              setStudyHabits((studyHabits) => studyHabits + 1);
-              setStudyPowerUpgrades((studyPowerUpgrades) => studyPowerUpgrades + 1);
-            }}>
-              Study Habits
-            </button>
+            <Tooltip text="Increases study power by 1.">
+              <button onClick={(e) => {
+                handleStudyHabitsUpgrade();
+                handleButtonClick(e);
+              }}>
+                Study Habits
+              </button>
+            </Tooltip>
           </>
         }
         <p>
